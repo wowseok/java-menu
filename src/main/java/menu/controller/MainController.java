@@ -17,6 +17,7 @@ public class MainController {
     public void run() {
         process(this::inputCoachNames);
         process(this::inputUnwantedFoods);
+        process(this::recommendResult);
     }
 
     private void inputCoachNames() {
@@ -30,6 +31,14 @@ public class MainController {
             outputView.printUnWantedFoods(coachFactory.getCoaches().get(i));
             coachFactory.getCoaches().get(i).setUnWantedFoods(InputView.readLine());
         }
+    }
+
+    private void recommendResult() {
+        outputView.printResultMessage();
+        service.menuRecommendService();
+        CoachFactory coachFactory = CoachFactory.getInstance();
+        outputView.printCoachMenu(coachFactory.getCoaches());
+        outputView.endMessage();
     }
 
 

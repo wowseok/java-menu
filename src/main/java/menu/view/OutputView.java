@@ -1,5 +1,8 @@
 package menu.view;
 
+import java.util.List;
+import menu.Day;
+import menu.domain.category.Category;
 import menu.domain.coach.Coach;
 
 public class OutputView {
@@ -20,9 +23,57 @@ public class OutputView {
         System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.%n", coach);
     }
 
-    /*public void printRecommandFoods() {
+    public void printResultMessage() {
         System.out.printf("메뉴 추천 결과입니다.%n");
+        printDays();
     }
-     */
+
+    public void printDays() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ 구분 | ");
+        Day[] days = Day.values();
+        for (int i = 0; i < days.length; i++) {
+            sb.append(days[i].getDay());
+            if (i < days.length - 1) { // 마지막 값이 아니면 구분자 추가
+                sb.append(" | ");
+            }
+        }
+        sb.append(" ]");
+        System.out.println(sb.toString());
+    }
+
+    public static void printCategory(List<Category> categories) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ 카테고리 | ");
+        for (int i = 0; i < categories.size(); i++) {
+            sb.append(categories.get(i).getName());
+            if (i < categories.size() - 1) { // 마지막 값이 아니면 구분자 추가
+                sb.append(" | ");
+            }
+        }
+        sb.append(" ]");
+        System.out.println(sb.toString());
+    }
+
+    public static void printCoachMenu(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(String.format("[ %s | ", coach.getName()));
+            for (int i = 0; i < coach.getMenu().size(); i++) {
+                sb.append(coach.getMenu().get(i));
+                if (i < coach.getMenu().size() - 1) {
+                    sb.append(" | ");
+                }
+            }
+            sb.append(" ]");
+            System.out.println(sb.toString());
+        }
+    }
+
+    public static void endMessage() {
+        System.out.println();
+        System.out.println("추천을 완료했습니다.");
+    }
+
 
 }
