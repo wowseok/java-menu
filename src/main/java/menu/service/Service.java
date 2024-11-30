@@ -17,6 +17,7 @@ public class Service {
         for (String coachName : coachNames) {
             coachFactory.createCoach(coachName);
         }
+        coachFactory.validate();
     }
 
     public void menuRecommendService() {

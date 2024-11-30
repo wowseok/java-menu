@@ -22,4 +22,15 @@ public class CoachFactory {
     public List<Coach> getCoaches() {
         return coaches;
     }
+
+    private void restCoaches() {
+        coaches.clear();
+    }
+
+    public void validate() {
+        if (coaches.size() < 2 || coaches.size() > 5) {
+            restCoaches();
+            throw new IllegalArgumentException("코치는 최소 2명, 최대 5명입니다.");
+        }
+    }
 }
