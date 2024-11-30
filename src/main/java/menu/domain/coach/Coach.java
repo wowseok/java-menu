@@ -22,7 +22,7 @@ public class Coach {
 
 
     public void setUnWantedFoods(String food) {
-        validate();
+        checkQuantity();
         this.unWantedFoods.add(food);
     }
 
@@ -42,6 +42,10 @@ public class Coach {
         return this.menu;
     }
 
+    public void restUnwantedFoods() {
+        unWantedFoods.clear();
+    }
+
     @Override
     public String toString() {
         return name;
@@ -53,12 +57,9 @@ public class Coach {
         }
     }
 
-    private void validate() {
-        checkQuantity();
-    }
-
     private void checkQuantity() {
-        if (unWantedFoods.size() > 2) {
+        if (unWantedFoods.size() >= 2) {
+            restUnwantedFoods();
             throw new IllegalArgumentException("먹지 못하는 음식 수는 최대 2개입니다.");
         }
     }

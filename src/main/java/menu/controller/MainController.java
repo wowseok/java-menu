@@ -29,7 +29,10 @@ public class MainController {
         CoachFactory coachFactory = CoachFactory.getInstance();
         for (int i = 0; i < coachFactory.getCoaches().size(); i++) {
             outputView.printUnWantedFoods(coachFactory.getCoaches().get(i));
-            coachFactory.getCoaches().get(i).setUnWantedFoods(InputView.readLine());
+            String[] unWantedFoods = InputView.readLine().split(",", -1);
+            for (String food : unWantedFoods) {
+                coachFactory.getCoaches().get(i).setUnWantedFoods(food);
+            }
         }
     }
 
