@@ -22,25 +22,17 @@ public class MainController {
 
     private void inputCoachNames() {
         outputView.printIntroMessage();
-        service.setUp(InputView.readLine());
+        service.setUpCoaches(InputView.readLine());
     }
 
     private void inputUnwantedFoods() {
-        CoachFactory coachFactory = CoachFactory.getInstance();
-        for (int i = 0; i < coachFactory.getCoaches().size(); i++) {
-            outputView.printUnWantedFoods(coachFactory.getCoaches().get(i));
-            String[] unWantedFoods = InputView.readLine().split(",", -1);
-            for (String food : unWantedFoods) {
-                coachFactory.getCoaches().get(i).setUnWantedFoods(food);
-            }
-        }
+        service.setUpFoods();
     }
 
     private void recommendResult() {
         outputView.printResultMessage();
         service.menuRecommendService();
-        CoachFactory coachFactory = CoachFactory.getInstance();
-        outputView.printCoachMenu(coachFactory.getCoaches());
+        outputView.printCoachMenu(CoachFactory.getInstance().getCoaches());
         outputView.endMessage();
     }
 
